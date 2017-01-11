@@ -1136,6 +1136,7 @@ static void engage_z_probe() {
 #endif
     }
     #else // Deploy the Z probe by touching the belt, no servo needed.
+/*
     feedrate = homing_feedrate[X_AXIS];
     destination[X_AXIS] = 35;
     destination[Y_AXIS] = 72;
@@ -1146,6 +1147,7 @@ static void engage_z_probe() {
     destination[X_AXIS] = 0;
     prepare_move_raw();
     st_synchronize();
+    */
     #endif //SERVO_ENDSTOPS
 }
 
@@ -1164,12 +1166,12 @@ static void retract_z_probe() {
     }
     #else // Push up the Z probe by moving the end effector, no servo needed.
     feedrate = homing_feedrate[X_AXIS];
-    destination[Z_AXIS] = current_position[Z_AXIS] + 20;
+    destination[Z_AXIS] = current_position[Z_AXIS] + 40;
     prepare_move_raw();
 
-    destination[X_AXIS] = -46;
-    destination[Y_AXIS] = 59;
-    destination[Z_AXIS] = 28;
+    destination[X_AXIS] = -61;
+    destination[Y_AXIS] = 64.5;
+    destination[Z_AXIS] = 31;
     prepare_move_raw();
 
     // TODO: Move the nozzle down until the Z probe switch is activated.
@@ -1183,7 +1185,7 @@ static void retract_z_probe() {
     prepare_move_raw();
 
     feedrate = homing_feedrate[Z_AXIS];
-    destination[Z_AXIS] = current_position[Z_AXIS] + 30;
+    destination[Z_AXIS] = current_position[Z_AXIS] + 20;
     prepare_move_raw();
     st_synchronize();
     #endif //SERVO_ENDSTOPS
