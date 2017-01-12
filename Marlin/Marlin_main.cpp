@@ -1169,8 +1169,8 @@ static void retract_z_probe() {
     destination[Z_AXIS] = current_position[Z_AXIS] + 40;
     prepare_move_raw();
 
-    destination[X_AXIS] = -61;
-    destination[Y_AXIS] = 64.5;
+    destination[X_AXIS] = -64.5;
+    destination[Y_AXIS] = 62;
     destination[Z_AXIS] = 31;
     prepare_move_raw();
 
@@ -2323,13 +2323,13 @@ void process_commands()
 // Do all the preliminary setup work.   First raise the probe.
 //
 
-        st_synchronize();
-        plan_bed_level_matrix.set_to_identity();
-	plan_buffer_line( X_current, Y_current, Z_start_location,
-			ext_position,
-    			homing_feedrate[Z_AXIS]/60,
-			active_extruder);
-        st_synchronize();
+  st_synchronize();
+  plan_bed_level_matrix.set_to_identity();
+  plan_buffer_line( X_current, Y_current, Z_start_location,
+                ext_position,
+  	            homing_feedrate[Z_AXIS]/60,
+                active_extruder);
+  st_synchronize();
 
 //
 // Now get everything to the specified probe point So we can safely do a probe to
@@ -2430,7 +2430,7 @@ void process_commands()
 		}
 
 		setup_for_endstop_move();
-                run_z_probe();
+    run_z_probe();
 
 		sample_set[n] = current_position[Z_AXIS];
 
